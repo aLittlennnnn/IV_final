@@ -45,7 +45,7 @@ const MapShanghai = () => {
   return (
     <div>
       <h1>NYU Shanghai Housing Selection Helper</h1>
-      <div ref={mapRef} style={{ height: '600px', width: '100%' }} />
+      <div ref={mapRef} style={{ height: '750px', width: '60%' }} />
     </div>
   );
 };
