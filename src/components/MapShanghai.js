@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 
 const MapShanghai = () => {
   const mapRef = useRef(null);
-
+  
   useEffect(() => {
     const map = L.map(mapRef.current).setView([31.2304, 121.4737], 11);
 
