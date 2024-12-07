@@ -7,7 +7,7 @@ const MapShanghai = dynamic(() => import('@/components/MapShanghai'), { ssr: fal
 const ShanghaiMapPage = () => {
   return (
     <div>
-      <h1>Shanghai Map</h1>
+      <h1>NYU Shanghai Housing Selection Helper</h1>
       <MapShanghai />
     </div>
   );
