@@ -5,7 +5,7 @@ import { ScatterChart, Scatter, ZAxis } from 'recharts';
 
 import { radar }  from "../components/radar";
 import { barchart } from "../components/barchart";
-import { ScatterPlot }  from "../components/scatter";
+import ScatterPlot from '../components/scatter';
 
 const MapShanghai = () => {
   const mapRef = useRef(null);
@@ -77,15 +77,11 @@ const MapShanghai = () => {
           </ScatterChart>
         </div>
 
-        {/* Scatter Plot #2 */}
         <div style={{ flexGrow: '1' }}>
-          <ScatterChart width={300} height={200}>
-            <CartesianGrid />
-            <XAxis type="number" dataKey="x" name="X-axis" />
-            <YAxis type="number" dataKey="y" name="Y-axis" />
-            <ZAxis range={[60]} />
-            <Scatter name="Dataset B" data={scatterData2} fill="#ff7300" />
-          </ScatterChart>
+          <ScatterPlot
+            set_mouse_selected_id={set_mouse_selected_id}
+            mouse_selected_id={mouse_selected_id}
+          />
         </div>
       </div>
     </div>
