@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import 'leaflet/dist/leaflet.css';
-import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts';
-import { ScatterChart, Scatter, ZAxis } from 'recharts';
+import RadarPlot from '../components/radar'; // Import RadarPlot component
 
 import { radar }  from "../components/radar";
 import { barchart } from "../components/barchart";
@@ -52,21 +51,12 @@ const MapShanghai = () => {
       <div style={{ flex: '2', marginRight: '10px' }}>
         <h1>NYU Shanghai Housing Selection Helper</h1>
         <div ref={mapRef} style={{ height: '750px', width: '100%' }} />
-      </div>
 
-      {/* Charts Section */}
-      <div style={{ flex: '1', display: 'flex', flexDirection: 'column' }}>
-        {/* Bar Chart */}
-        <div style={{ flexGrow: '1', marginBottom: '10px' }}>
-          <BarChart width={300} height={200} data={barData}>
-            <CartesianGrid stroke="#ccc" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Bar dataKey="value" fill="#8884d8" />
-          </BarChart>
-        </div>
+      {/* Radar Plot Section */}
+      <div style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <h2>Radar Plot</h2>
 
-        {/* Scatter Plot #1 */}
+      {/* Scatter Plot #1 */}
         <div style={{ flexGrow: '1', marginBottom: '10px' }}>
           <ScatterChart width={300} height={200}>
             <CartesianGrid />
