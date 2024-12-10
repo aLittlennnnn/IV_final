@@ -3,6 +3,7 @@ import "leaflet/dist/leaflet.css";
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from "recharts";
 import { ScatterChart, Scatter, ZAxis } from "recharts";
 import RadarPlot from "../components/radar"; // Adjust the path if necessary
+import ScatterPlot from "../components/scatter";
 
 const MapShanghai = () => {
   const mapRef = useRef(null);
@@ -86,8 +87,15 @@ const MapShanghai = () => {
       >
         {/* Radar Plot Section */}
         <div style={{ flexGrow: "1", marginBottom: "20px" }}>
-          <h2>Radar Plot</h2>
-          <RadarPlot selectedId="B00156YLA3" />
+
+          <h2>POI categories & numbers</h2>
+          <RadarPlot />
+
+        </div>
+        
+        <div style={{ flexGrow: "2", marginBottom: "20px" }}>
+          <h2>POI entropy & monthly rent</h2>
+          <ScatterPlot />
         </div>
 
         {/* Bar Chart Section */}

@@ -11,7 +11,7 @@ const ScatterPlot = ({ set_mouse_selected_id, mouse_selected_id }) => {
 
   useEffect(() => {
     // Load and parse the CSV data
-    Papa.parse('../data/housing_poi_entropy.csv', {
+    Papa.parse('/housing_poi_entropy.csv', {
       download: true,
       header: true,
       complete: (result) => {
@@ -39,14 +39,7 @@ const ScatterPlot = ({ set_mouse_selected_id, mouse_selected_id }) => {
 
   return (
     <ResponsiveContainer width="100%" height={400}>
-      <ScatterChart
-        margin={{
-          top: 20,
-          right: 20,
-          bottom: 20,
-          left: 20,
-        }}
-      >
+      <ScatterChart width={500} height={500} data={data}>
         <CartesianGrid />
         <XAxis type="number" dataKey="x" name="POI Entropy" unit="" />
         <YAxis type="number" dataKey="y" name="Monthly Rent" unit="$" />
