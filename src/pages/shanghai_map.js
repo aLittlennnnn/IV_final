@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import 'leaflet/dist/leaflet.css';
-import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts';
-import { ScatterChart, Scatter, ZAxis } from 'recharts';
+import RadarPlot from '../components/radar'; // Import RadarPlot component
 
 const MapShanghai = () => {
   const mapRef = useRef(null);
@@ -42,28 +41,6 @@ const MapShanghai = () => {
     }
   }, []);
 
-  // Sample data for charts
-  const barData = [
-    { name: 'A', value: 400 },
-    { name: 'B', value: 300 },
-    { name: 'C', value: 200 },
-    { name: 'D', value: 100 },
-  ];
-
-  const scatterData1 = [
-    { x: 10, y: 20 },
-    { x: 20, y: 30 },
-    { x: 30, y: 40 },
-    { x: 40, y: 50 },
-  ];
-
-  const scatterData2 = [
-    { x: 15, y: 25 },
-    { x: 25, y: 35 },
-    { x: 35, y: 45 },
-    { x: 45, y: 55 },
-  ];
-
   return (
     <div style={{ display: 'flex', height: '100vh' }}>
       {/* Map Section */}
@@ -72,39 +49,10 @@ const MapShanghai = () => {
         <div ref={mapRef} style={{ height: '750px', width: '100%' }} />
       </div>
 
-      {/* Charts Section */}
-      <div style={{ flex: '1', display: 'flex', flexDirection: 'column' }}>
-        {/* Bar Chart */}
-        <div style={{ flexGrow: '1', marginBottom: '10px' }}>
-          <BarChart width={300} height={200} data={barData}>
-            <CartesianGrid stroke="#ccc" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Bar dataKey="value" fill="#8884d8" />
-          </BarChart>
-        </div>
-
-        {/* Scatter Plot #1 */}
-        <div style={{ flexGrow: '1', marginBottom: '10px' }}>
-          <ScatterChart width={300} height={200}>
-            <CartesianGrid />
-            <XAxis type="number" dataKey="x" name="X-axis" />
-            <YAxis type="number" dataKey="y" name="Y-axis" />
-            <ZAxis range={[60]} />
-            <Scatter name="Dataset A" data={scatterData1} fill="#82ca9d" />
-          </ScatterChart>
-        </div>
-
-        {/* Scatter Plot #2 */}
-        <div style={{ flexGrow: '1' }}>
-          <ScatterChart width={300} height={200}>
-            <CartesianGrid />
-            <XAxis type="number" dataKey="x" name="X-axis" />
-            <YAxis type="number" dataKey="y" name="Y-axis" />
-            <ZAxis range={[60]} />
-            <Scatter name="Dataset B" data={scatterData2} fill="#ff7300" />
-          </ScatterChart>
-        </div>
+      {/* Radar Plot Section */}
+      <div style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <h2>Radar Plot</h2>
+        <RadarPlot />
       </div>
     </div>
   );
