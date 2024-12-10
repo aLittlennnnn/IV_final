@@ -3,6 +3,10 @@ import 'leaflet/dist/leaflet.css';
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts';
 import { ScatterChart, Scatter, ZAxis } from 'recharts';
 
+import { radar }  from "../components/radar";
+import { barchart } from "../components/barchart";
+import { scatter }  from "../components/scatter";
+
 const MapShanghai = () => {
   const mapRef = useRef(null);
 
@@ -41,28 +45,6 @@ const MapShanghai = () => {
       };
     }
   }, []);
-
-  // Sample data for charts
-  const barData = [
-    { name: 'A', value: 400 },
-    { name: 'B', value: 300 },
-    { name: 'C', value: 200 },
-    { name: 'D', value: 100 },
-  ];
-
-  const scatterData1 = [
-    { x: 10, y: 20 },
-    { x: 20, y: 30 },
-    { x: 30, y: 40 },
-    { x: 40, y: 50 },
-  ];
-
-  const scatterData2 = [
-    { x: 15, y: 25 },
-    { x: 25, y: 35 },
-    { x: 35, y: 45 },
-    { x: 45, y: 55 },
-  ];
 
   return (
     <div style={{ display: 'flex', height: '100vh' }}>

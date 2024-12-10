@@ -1,0 +1,1 @@
+import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts';
