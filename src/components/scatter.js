@@ -39,14 +39,7 @@ const ScatterPlot = ({ set_mouse_selected_id, mouse_selected_id }) => {
 
   return (
     <ResponsiveContainer width="100%" height={400}>
-      <ScatterChart
-        margin={{
-          top: 20,
-          right: 20,
-          bottom: 20,
-          left: 20,
-        }}
-      >
+      <ScatterChart width={500} height={500} data={data}>
         <CartesianGrid />
         <XAxis type="number" dataKey="x" name="POI Entropy" unit="" />
         <YAxis type="number" dataKey="y" name="Monthly Rent" unit="$" />

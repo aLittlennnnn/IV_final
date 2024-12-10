@@ -87,19 +87,12 @@ const MapShanghai = () => {
       >
         {/* Radar Plot Section */}
         <div style={{ flexGrow: "1", marginBottom: "20px" }}>
-          <h2>Radar Plot</h2>
+          <h2>POI categories & numbers</h2>
           <RadarPlot />
         </div>
-        <div
-          style={{
-            flex: "2",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            marginRight: "20px",
-          }}
-        >
-          <h2>Scatter Plot</h2>
+        
+        <div style={{ flexGrow: "2", marginBottom: "20px" }}>
+          <h2>POI entropy & monthly rent</h2>
           <ScatterPlot />
         </div>
 
