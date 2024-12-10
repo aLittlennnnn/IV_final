@@ -2,6 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import 'leaflet/dist/leaflet.css';
 import RadarPlot from '../components/radar'; // Import RadarPlot component
 
+import { radar }  from "../components/radar";
+import { barchart } from "../components/barchart";
+import ScatterPlot from '../components/scatter';
+
 const MapShanghai = () => {
   const mapRef = useRef(null);
 
@@ -47,12 +51,28 @@ const MapShanghai = () => {
       <div style={{ flex: '2', marginRight: '10px' }}>
         <h1>NYU Shanghai Housing Selection Helper</h1>
         <div ref={mapRef} style={{ height: '750px', width: '100%' }} />
-      </div>
 
       {/* Radar Plot Section */}
       <div style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <h2>Radar Plot</h2>
-        <RadarPlot />
+
+      {/* Scatter Plot #1 */}
+        <div style={{ flexGrow: '1', marginBottom: '10px' }}>
+          <ScatterChart width={300} height={200}>
+            <CartesianGrid />
+            <XAxis type="number" dataKey="x" name="X-axis" />
+            <YAxis type="number" dataKey="y" name="Y-axis" />
+            <ZAxis range={[60]} />
+            <Scatter name="Dataset A" data={scatterData1} fill="#82ca9d" />
+          </ScatterChart>
+        </div>
+
+        <div style={{ flexGrow: '1' }}>
+          <ScatterPlot
+            set_mouse_selected_id={set_mouse_selected_id}
+            mouse_selected_id={mouse_selected_id}
+          />
+        </div>
       </div>
     </div>
   );
