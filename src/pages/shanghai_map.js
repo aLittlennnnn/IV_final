@@ -1,77 +1,142 @@
-import React, { useEffect, useRef } from 'react';
-import 'leaflet/dist/leaflet.css';
-import RadarPlot from '../components/radar'; // Import RadarPlot component
-
-import { radar }  from "../components/radar";
-import { barchart } from "../components/barchart";
-import ScatterPlot from '../components/scatter';
+import React, { useEffect, useRef } from "react";
+import "leaflet/dist/leaflet.css";
+import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from "recharts";
+import { ScatterChart, Scatter, ZAxis } from "recharts";
+import RadarPlot from "../components/radar"; // Import RadarPlot component
 
 const MapShanghai = () => {
   const mapRef = useRef(null);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const L = require('leaflet');
+    if (typeof window !== "undefined") {
+      const L = require("leaflet");
       const map = L.map(mapRef.current).setView([31.150661, 121.47701], 15);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 18,
         minZoom: 15,
-        attribution: '&copy; OpenStreetMap contributors',
+        attribution: "&copy; OpenStreetMap contributors",
       }).addTo(map);
 
       L.circle([31.150854, 121.47708], {
-        color: 'red',
-        fillColor: '#f03',
+        color: "red",
+        fillColor: "#f03",
         fillOpacity: 0.5,
         radius: 60,
       }).addTo(map);
 
       L.popup()
         .setLatLng([31.150854, 121.47708])
-        .setContent('NYU Shanghai')
+        .setContent("NYU Shanghai")
         .openOn(map);
 
       const onMapClick = (e) => {
         alert(`You clicked the map at ${e.latlng}`);
       };
 
-      map.on('click', onMapClick);
+      map.on("click", onMapClick);
 
       return () => {
-        map.off('click', onMapClick);
+        map.off("click", onMapClick);
         map.remove();
       };
     }
   }, []);
 
+  // Sample data for charts
+  const barData = [
+    { name: "A", value: 400 },
+    { name: "B", value: 300 },
+    { name: "C", value: 200 },
+    { name: "D", value: 100 },
+  ];
+
+  const scatterData1 = [
+    { x: 10, y: 20 },
+    { x: 20, y: 30 },
+    { x: 30, y: 40 },
+    { x: 40, y: 50 },
+  ];
+
+  const scatterData2 = [
+    { x: 15, y: 25 },
+    { x: 25, y: 35 },
+    { x: 35, y: 45 },
+    { x: 45, y: 55 },
+  ];
+
   return (
-    <div style={{ display: 'flex', height: '100vh' }}>
+    <div style={{ display: "flex", height: "100vh" }}>
       {/* Map Section */}
-      <div style={{ flex: '2', marginRight: '10px' }}>
+      <div style={{ flex: "2", marginRight: "10px" }}>
         <h1>NYU Shanghai Housing Selection Helper</h1>
-        <div ref={mapRef} style={{ height: '750px', width: '100%' }} />
+        <div ref={mapRef} style={{ height: "750px", width: "100%" }} />
+      </div>
 
-      {/* Radar Plot Section */}
-      <div style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <h2>Radar Plot</h2>
-
-      {/* Scatter Plot #1 */}
-        <div style={{ flexGrow: '1', marginBottom: '10px' }}>
-          <ScatterChart width={300} height={200}>
-            <CartesianGrid />
-            <XAxis type="number" dataKey="x" name="X-axis" />
-            <YAxis type="number" dataKey="y" name="Y-axis" />
-            <ZAxis range={[60]} />
-            <Scatter name="Dataset A" data={scatterData1} fill="#82ca9d" />
-          </ScatterChart>
+      {/* Combined Sections */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          width: "100%",
+        }}
+      >
+        {/* Radar Plot Section */}
+        <div
+          style={{
+            flex: "1",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            marginRight: "20px",
+          }}
+        >
+          <h2>Radar Plot</h2>
+          <RadarPlot />
         </div>
 
-        <div style={{ flexGrow: '1' }}>
-          <ScatterPlot
-            set_mouse_selected_id={set_mouse_selected_id}
-            mouse_selected_id={mouse_selected_id}
-          />
+        {/* Charts Section */}
+        <div
+          style={{
+            flex: "2",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          {/* Bar Chart */}
+          <div style={{ flexGrow: "1", marginBottom: "10px" }}>
+            <BarChart width={300} height={200} data={barData}>
+              <CartesianGrid stroke="#ccc" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Bar dataKey="value" fill="#8884d8" />
+            </BarChart>
+          </div>
+
+          {/* Scatter Plot #1 */}
+          <div style={{ flexGrow: "1", marginBottom: "10px" }}>
+            <ScatterChart width={300} height={200}>
+              <CartesianGrid />
+              <XAxis type="number" dataKey="x" name="X-axis" />
+              <YAxis type="number" dataKey="y" name="Y-axis" />
+              <ZAxis range={[60]} />
+              <Scatter name="Dataset A" data={scatterData1} fill="#82ca9d" />
+            </ScatterChart>
+          </div>
+
+          {/* Scatter Plot #2 */}
+          <div style={{ flexGrow: "1", marginTop: "10px" }}>
+            {/* Assuming ScatterPlot is a valid component */}
+            <ScatterChart width={300} height={200}>
+              <CartesianGrid />
+              <XAxis type="number" dataKey="x" name="X-axis" />
+              <YAxis type="number" dataKey="y" name="Y-axis" />
+              <ZAxis range={[60]} />
+              <Scatter name="Dataset B" data={scatterData2} fill="#ff7300" />
+            </ScatterChart>
+          </div>
         </div>
       </div>
     </div>
