@@ -5,7 +5,7 @@ import { ScatterChart, Scatter, ZAxis } from 'recharts';
 
 import { radar }  from "../components/radar";
 import { barchart } from "../components/barchart";
-import { scatter }  from "../components/scatter";
+import { ScatterPlot }  from "../components/scatter";
 
 const MapShanghai = () => {
   const mapRef = useRef(null);
