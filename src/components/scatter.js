@@ -11,7 +11,7 @@ const ScatterPlot = ({ set_mouse_selected_id, mouse_selected_id }) => {
 
   useEffect(() => {
     // Load and parse the CSV data
-    Papa.parse('../data/housing_poi_entropy.csv', {
+    Papa.parse('/housing_poi_entropy.csv', {
       download: true,
       header: true,
       complete: (result) => {
