@@ -87,7 +87,7 @@ const MapShanghai = () => {
         {/* Radar Plot Section */}
         <div style={{ flexGrow: "1", marginBottom: "20px" }}>
           <h2>Radar Plot</h2>
-          <RadarPlot />
+          <RadarPlot selectedId="B00156YLA3" />
         </div>
 
         {/* Bar Chart Section */}
