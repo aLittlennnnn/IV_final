@@ -87,8 +87,10 @@ const MapShanghai = () => {
       >
         {/* Radar Plot Section */}
         <div style={{ flexGrow: "1", marginBottom: "20px" }}>
+
           <h2>POI categories & numbers</h2>
           <RadarPlot />
+
         </div>
         
         <div style={{ flexGrow: "2", marginBottom: "20px" }}>
