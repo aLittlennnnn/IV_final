@@ -24,18 +24,31 @@ const ScatterPlot = ({ selectedId }) => {
     });
   }, []);
 
-  // Process scatter data
+  // // Process scatter data
+  // useEffect(() => {
+  //   if (csvData.length > 0) {
+  //     const formattedData = csvData.map((row) => ({
+  //       x: parseFloat(row.poi_entropy_800m),
+  //       y: parseFloat(row.monthly_rent),
+  //       id: row.id,
+  //     }));
+  //     setScatterData(formattedData);
+  //   }
+  // }, [csvData]);
+  // Process scatter data, filter out id B00123ABCD
   useEffect(() => {
     if (csvData.length > 0) {
-      const formattedData = csvData.map((row) => ({
-        x: parseFloat(row.poi_entropy_800m),
-        y: parseFloat(row.monthly_rent),
-        id: row.id,
-      }));
+      const formattedData = csvData
+        .filter((row) => row.id !== "B00123ABCD") // Filter out B00123ABCD
+        .map((row) => ({
+          x: parseFloat(row.poi_entropy_800m),
+          y: parseFloat(row.monthly_rent),
+          id: row.id,
+        }));
       setScatterData(formattedData);
     }
   }, [csvData]);
-
+  
   // Generate regression line points
   const regressionPoints = scatterData
     .filter((point) => point.x >= 2.5 && point.x <= 3.6)

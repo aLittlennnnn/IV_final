@@ -49,40 +49,86 @@ const BarPlot = ({ selectedId }) => {
       });
     }, []);
 
+    // // Process data for bar chart
+    // useEffect(() => {
+    //     if (selectedId && csvData.length > 0) {
+    //     // Find the row with the selected ID
+    //     const selectedRow = csvData.find((row) => row.id === selectedId);
+    //     if (selectedRow) {
+    //         const averages = calculateAverages(csvData);
+    
+    //         // Prepare data for the chart
+    //         //console.log(averages.driving__duration)
+    //         //console.log(averages.Public_transport_duration)
+    //         const barData = [
+    //           {
+    //             name: 'Walking',
+    //             selected: parseFloat(selectedRow.walking_duration || 0),
+    //             average: averages.walking_duration,
+    //           },
+    //           {
+    //             name: 'Driving',
+    //             selected: parseFloat(selectedRow.driving__duration || 0),
+    //             average: averages.driving__duration,
+    //           },
+    //           {
+    //             name: 'Public Transport',
+    //             selected: parseFloat(selectedRow.Public_transport_duration || 0),
+    //             average: averages.Public_transport_duration,
+    //           },
+    //         ];
+    
+    //         setbarData(barData);
+    //       }
+    //     }
+    //   }, [selectedId, csvData]);
     // Process data for bar chart
-    useEffect(() => {
-        if (selectedId && csvData.length > 0) {
-        // Find the row with the selected ID
+  useEffect(() => {
+    if (csvData.length > 0) {
+      const averages = calculateAverages(csvData);
+
+      let barData = [
+        {
+          name: 'Walking',
+          selected: 0,
+          average: averages.walking_duration,
+        },
+        {
+          name: 'Driving',
+          selected: 0,
+          average: averages.driving__duration,
+        },
+        {
+          name: 'Public Transport',
+          selected: 0,
+          average: averages.Public_transport_duration,
+        },
+      ];
+
+      // If selectedId exists, find the corresponding row and update the selected data
+      if (selectedId) {
         const selectedRow = csvData.find((row) => row.id === selectedId);
         if (selectedRow) {
-            const averages = calculateAverages(csvData);
-    
-            // Prepare data for the chart
-            //console.log(averages.driving__duration)
-            //console.log(averages.Public_transport_duration)
-            const barData = [
-              {
-                name: 'Walking',
-                selected: parseFloat(selectedRow.walking_duration || 0),
-                average: averages.walking_duration,
-              },
-              {
-                name: 'Driving',
-                selected: parseFloat(selectedRow.driving__duration || 0),
-                average: averages.driving__duration,
-              },
-              {
-                name: 'Public Transport',
-                selected: parseFloat(selectedRow.Public_transport_duration || 0),
-                average: averages.Public_transport_duration,
-              },
-            ];
-    
-            setbarData(barData);
-          }
+          // Update the 'selected' data for each transport method separately
+          barData = barData.map((item) => {
+            if (item.name === 'Walking') {
+              item.selected = parseFloat(selectedRow.walking_duration || 0);
+            } else if (item.name === 'Driving') {
+              item.selected = parseFloat(selectedRow.driving__duration || 0);
+            } else if (item.name === 'Public Transport') {
+              item.selected = parseFloat(selectedRow.Public_transport_duration || 0);
+            }
+            return item;
+          });
         }
-      }, [selectedId, csvData]);
-    
+      }
+
+      // Update the barData state
+      setbarData(barData);
+    }
+  }, [selectedId, csvData]);
+      //Prepare data for the chart, separating averages and selected data
+      
     return (
         <ResponsiveContainer width={450} height={400}>
           <BarChart
