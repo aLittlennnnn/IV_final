@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Line } from 'recharts';
 import Papa from 'papaparse';
 
-const ScatterPlot = () => {
+const ScatterPlot = ({ selectedId }) => {
   const [csvData, setCsvData] = useState([]);
   const [scatterData, setScatterData] = useState([]);
-  const selectedId = "B00156YLA3"; // Hardcoded ID for testing
+  // const selectedId = "B00156YLA3"; // Hardcoded ID for testing
   const regressionLine = {
     slope: -4693.351,
     intercept: 25742.77,
@@ -13,7 +13,7 @@ const ScatterPlot = () => {
 
   // Load CSV data
   useEffect(() => {
-    Papa.parse('/housing_poi_entropy.csv', {
+    Papa.parse('/housing_poi_complete.csv', {
       download: true,
       header: true,
       complete: (result) => {
@@ -53,10 +53,11 @@ const ScatterPlot = () => {
   const yMax = Math.max(...allYValues);
 
   return (
-    <ResponsiveContainer width={500} height={400}>
+    <ResponsiveContainer width={450} height={400}>
       <ScatterChart 
         margin={{
           top: 20,
+          bottom: 30,
         }}
       >
         <CartesianGrid />
