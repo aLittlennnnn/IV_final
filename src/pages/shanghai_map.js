@@ -117,7 +117,7 @@ const MapShanghai = () => {
         {/* Radar Plot Section */}
         <div style={{ flex: "1", marginTop: "20px", marginLeft: "10px" }}>
           <h2>POI Categories & Numbers</h2>
-          <RadarPlot selectedId={selectedId} />
+          <RadarPlot selectedId={selectedId}/>
         </div>
 
         {/* Scatter Plot Section */}
