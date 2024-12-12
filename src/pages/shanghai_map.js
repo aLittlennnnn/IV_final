@@ -101,7 +101,7 @@ const MapShanghai = () => {
     <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
       {/* Map Section */}
       <div style={{ flexBasis: "75%", marginLeft: "10px", marginBottom: "20px" }}>
-        <h1>NYU Shanghai Housing Selection Helper</h1>
+        <h1 style={{ textAlign: "center"}}>NYU Shanghai Housing Selection Helper</h1>
         <div ref={mapRef} style={{ height: "100%", width: "100%" }} />
       </div>
 
