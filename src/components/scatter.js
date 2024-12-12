@@ -84,7 +84,7 @@ const ScatterPlot = ({ selectedId }) => {
           type="number"
           dataKey="y"
           name="Monthly Rent"
-          domain={[yMin, yMax]}
+          domain={[0, yMax]}
         />
         <Tooltip cursor={{ strokeDasharray: '3 3' }} />
         {/* All housing points */}
